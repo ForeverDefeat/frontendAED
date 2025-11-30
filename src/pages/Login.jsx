@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
+
+import api from "../api/api";
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
@@ -11,7 +12,7 @@ const Login = ({ onLogin }) => {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:8000/api/login/", {
+      const res = await api.post("login/", {
         email,
         password,
       });
