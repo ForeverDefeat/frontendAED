@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../api/api";
 import { exportToCSV, exportToPDF } from "../Reports/exportUtils";
 import { ChartBarIcon, ShoppingCartIcon, BanknotesIcon } from "@heroicons/react/24/solid";
 
@@ -27,10 +27,15 @@ const Sales = () => {
   const user = JSON.parse(localStorage.getItem("user") || "{}");
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/productos/").then((res) => setProducts(res.data));
+    // Obtener productos desde el backend real (Render)
+    api.get("productos/")
+      .then((res) => setProducts(res.data))
+      .catch((err) => console.error("Error cargando productos:", err));
 
-    axios.get("http://localhost:8000/api/ventas/").then((res) => {
-      setSales(res.data);
+    // Obtener ventas
+    api.get("ventas/")
+      .then((res) => {
+        setSales(res.data);
 
       let totalSales = 0;
       let trans = res.data.length;
@@ -109,7 +114,7 @@ const Sales = () => {
     setMessage(null);
 
     try {
-      const res = await axios.post("http://localhost:8000/api/ventas/registrar/", {
+      const res = await api.post("ventas/registrar/", {
         usuario_id: user.id_usuario ?? 1,
         items: cart.map((i) => ({
           id_producto: i.id_producto,
