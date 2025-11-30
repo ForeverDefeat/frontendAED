@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+
+import api from "../api/api";
 
 import Filters from "./Filters";
 import KPICards from "./KPICards";
@@ -36,8 +37,8 @@ const Reports = () => {
     const loadSalesReport = async () => {
         const today = new Date().toISOString().split("T")[0];
         try {
-            const res = await axios.get(
-                `http://localhost:8000/api/reports/ventas/?fecha=${today}`
+            const res = await api.get(
+                `reports/ventas/?fecha=${today}`
             );
 
             const data = res.data;
@@ -56,8 +57,8 @@ const Reports = () => {
 
     const loadSalesDetails = async () => {
         try {
-            const res = await axios.get(
-                "http://localhost:8000/api/reports/ventas/detalles/"
+            const res = await api.get(
+                "reports/ventas/detalles/"
             );
 
             const mapped = res.data.ventas.map((v, index) => ({
