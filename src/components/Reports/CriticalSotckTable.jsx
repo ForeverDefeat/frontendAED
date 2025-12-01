@@ -1,13 +1,14 @@
 // CriticalStockTable.jsx
 import React, { useEffect, useState } from "react";
 import { exportToCSV, exportToPDF } from "./exportUtils";
+import api from "../../api/api"; 
 
 export default function CriticalStockTable() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/reports/stock-critico/")
+    fetch("reports/stock-critico/")
       .then((res) => res.json())
       .then((json) => {
         if (Array.isArray(json)) setProducts(json);
