@@ -134,21 +134,21 @@ const Inventory = () => {
             />
 
             {/* TABLA */}
-            <div className="w-full overflow-x-auto mt-6 rounded-lg shadow bg-white">
-                <table className="min-w-full text-sm border-collapse">
+           <div className="w-full overflow-x-auto mt-6 rounded-lg shadow bg-white">
+                <table className="min-w-full text-sm border-collapse table-fixed">
                     <thead className="bg-blue-600 text-white">
                         <tr>
-                            <th className="px-4 py-3 text-left">ID</th>
-                            <th className="px-4 py-3 text-left">Nombre</th>
-                            <th className="px-4 py-3 text-left">Categoría</th>
-                            <th className="px-4 py-3 text-left">Descripción</th>
-                            <th className="px-4 py-3 text-left">Stock</th>
-                            <th className="px-4 py-3 text-left">Precio Compra</th>
-                            <th className="px-4 py-3 text-left">Precio Venta</th>
-                            <th className="px-4 py-3 text-left">Acciones</th>
+                            <th className="px-4 py-3 text-left w-12">ID</th>
+                            <th className="px-4 py-3 text-left w-36">Nombre</th>
+                            <th className="px-4 py-3 text-left w-32">Categoría</th>
+                            <th className="px-4 py-3 text-left w-64 truncate">Descripción</th>
+                            <th className="px-4 py-3 text-left w-20">Stock</th>
+                            <th className="px-4 py-3 text-left w-28">Precio Compra</th>
+                            <th className="px-4 py-3 text-left w-28">Precio Venta</th>
+                            <th className="px-4 py-3 text-left w-28">Acciones</th>
                         </tr>
                     </thead>
-
+            
                     <tbody>
                         {products.map((prod) => (
                             <ProductRow
@@ -161,6 +161,7 @@ const Inventory = () => {
                     </tbody>
                 </table>
             </div>
+
 
             {/* MODAL EDITAR */}
             <EditModal
