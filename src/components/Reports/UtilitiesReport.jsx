@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { exportToCSV, exportToPDF } from "./exportUtils";
+import api from "../../api/api"; 
 
 export default function UtilitiesReport() {
   const [utilities, setUtilities] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/reports/utilidades/")
+    fetch("reports/utilidades/")
       .then((res) => res.json())
       .then((json) => {
         if (Array.isArray(json)) {
